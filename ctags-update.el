@@ -272,9 +272,7 @@ not visiting a file"
   :init-value nil
   :group 'ctags-update
   (if ctags-auto-update-mode
-      (progn
-        (add-hook 'after-save-hook 'ctags-update nil t)
-        (run-hooks 'ctags-auto-update-mode-hook))
+      (add-hook 'after-save-hook 'ctags-update nil t)
     (remove-hook 'after-save-hook 'ctags-update t)))
 
 ;;;###autoload

@@ -1,3 +1,14 @@
+[![MELPA](http://melpa.org/packages/ctags-update-badge.svg)](http://melpa.org/#/ctags-update)
+
+
+The easiest way to get started is to install the package via [MELPA][melpa]:
+
+ [melpa]: http://melpa.org/
+
+```elisp
+(package-install 'ctags-update)
+```
+
 (auto) update TAGS using exuberant-ctags
 
     (autoload 'turn-on-ctags-auto-update-mode "ctags-update" "turn on 'ctags-auto-update-mode'." t)

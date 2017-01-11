@@ -19,6 +19,7 @@ The easiest way to get started is to install the package via [MELPA][melpa]:
 
 
 
+    ;if you want to update (create) TAGS manually
     (autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
     (global-set-key "\C-cE" 'ctags-update)
     
@@ -26,16 +27,13 @@ with prefix 'C-u' ,then you can generate a new TAGS file in your selected direct
 with prefix 'C-uC-u' same to prefix 'C-u',but save it to kill-ring instead of execute it."
 
 
-when you save a file ,'ctags-auto-update-mode' will recursively searches each
-parent directory for a file named 'TAGS'. if found ,it will use
-'exuberant-ctags' update TAGS.
+when you save a file ,`ctags-auto-update-mode` will update TAGS using `exuberant-ctags`.
 
-it would not be updated if last time calling 'ctags-update' is not 5 minute age(default).
-
-if no 'TAGS' found ,it will check 'tags-table-list' and 'tags-file-name'
-if current buffer shares the same parent directory with 'tags-file-name'
-or one element of 'tags-table-list', it will auto create 'TAGS' file .
+custom the interval  of updating TAGS  by `ctags-update-delay-seconds` .
 
 
 
+on windows ,you can custom `ctags-update-command` like this:
 
+    (when (equal system-type 'windows-nt)
+      (setq ctags-update-command (expand-file-name  "~/.emacs.d/bin/ctags.exe")))

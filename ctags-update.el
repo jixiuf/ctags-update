@@ -1,14 +1,12 @@
 ;;; ctags-update.el --- (auto) update TAGS in parent directory using exuberant-ctags
 
 ;; Created: 2011-10-16 13:17
-;; Last Updated: 纪秀峰 2013-11-07 17:45:50 4
-;; Version: 0.2.2
+;; Version: 1.0
 ;; Author: Joseph(纪秀峰)  jixiuf@gmail.com
 ;; Keywords: exuberant-ctags etags
-;; URL: https://github.com/jixiuf/helm-etags-plus
-;;      https://github.com/emacsmirror/ctags-update
+;; URL: https://github.com/jixiuf/ctags-update
 
-;; Copyright (C) 2011,2012 Joseph(纪秀峰) all rights reserved.
+;; Copyright (C) 2011,2017 Joseph(纪秀峰) all rights reserved.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -25,11 +23,6 @@
 
 ;;; Commentary:
 
-;; Just put ctags-update.el to your load-path.
-;; The load-path is usually ~/elisp/.
-;; It's set in your ~/.emacs like this:
-;; (add-to-list 'load-path (expand-file-name "~/elisp"))
-;;
 ;; And the following to your ~/.emacs startup file.
 ;;
 ;;(autoload 'turn-on-ctags-auto-update-mode "ctags-update" "turn on `ctags-auto-update-mode'." t)
@@ -44,7 +37,7 @@
 ;; if no 'TAGS' found ,it will check `tags-table-list' and `tags-file-name'
 ;; if current buffer shares the same parent directory with `tags-file-name' or one element of
 ;; `tags-table-list' , it will auto create 'TAGS' file
-;; eq:
+
 ;;    (setq tags-file-name "/tmp/TAGS")
 ;;  or
 ;;    (setq tags-table-list '("/tmp/TAGS"))
@@ -54,40 +47,13 @@
 ;;     (autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
 ;;     (global-set-key "\C-cE" 'ctags-update)
 ;; with prefix `C-u' ,then you can generate a new TAGS file in your selected directory,
-;; with prefix `C-uC-u' same to prefix `C-u',but save it to kill-ring instead of execute it."
+;; with prefix `C-uC-u' same to prefix `C-u',but save the command to kill-ring instead of execute it."
 
 ;;
 ;; on windows ,you can custom `ctags-update-command' like this:
 ;; (when (equal system-type 'windows-nt)
 ;;   (setq ctags-update-command (expand-file-name  "~/.emacs.d/bin/ctags.exe")))
 
-;;; Commands:
-;;
-;; Below are complete command list:
-;;
-;;  `ctags-update'
-;;    update TAGS in parent directory using `exuberant-ctags'.
-;;  `ctags-auto-update-mode'
-;;    auto update TAGS using `exuberant-ctags' in parent directory.
-;;  `turn-on-ctags-auto-update-mode'
-;;    turn on `ctags-auto-update-mode'.
-;;
-;;; Customizable Options:
-;;
-;; Below are customizable option list:
-;;
-;;  `ctags-update-command'
-;;    it only support `exuberant-ctags'
-;;    default = "ctags"
-;;  `ctags-update-delay-seconds'
-;;    in `after-save-hook' current-time - last-time must bigger than this value,
-;;    default = (* 5 60)
-;;  `ctags-update-other-options'
-;;    other options for ctags
-;;    default = (list "--exclude='*.elc'" "--exclude='*.class'" "--exclude='.git'" "--exclude='.svn'" ...)
-;;  `ctags-update-lighter'
-;;    Lighter displayed in mode line when `ctags-auto-update-mode'
-;;    default = " ctagsU"
 
 ;;; Code:
 

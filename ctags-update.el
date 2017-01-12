@@ -217,7 +217,6 @@ this return t if current buffer file name is TAGS."
 3. with prefix `C-u' then you can generate a new TAGS file in selected directory,
 4. with prefix `C-uC-u' save the command to kill-ring instead of execute it."
   (interactive "P")
-  (message "%dsss"(prefix-numeric-value current-prefix-arg))
   (let (tags proc)
     (setq tags (ctags-update-how-to-update))
     (when tags

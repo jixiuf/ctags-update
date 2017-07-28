@@ -94,6 +94,11 @@ is enabled."
   :group 'ctags-update
   :type 'string)
 
+(defcustom ctags-update-prompt-create-tags t
+  "Promtp create `TAGS' when tag file not exists."
+  :group 'ctags-update
+  :type 'string)
+
 (defvar ctags-update-last-update-time
   (- (float-time (current-time)) ctags-update-delay-seconds 1)
   "make sure when user first call `ctags-update' it can run immediately")
@@ -199,10 +204,12 @@ this return t if current buffer file name is TAGS."
       (unless tags
         (setq ctags-update-last-update-time
               (- (float-time (current-time)) ctags-update-delay-seconds 1))
-        (setq tags
-              (expand-file-name
-               "TAGS" (read-directory-name
-                       "Generate TAGS in dir(or disable `ctags-auto-update-mode'):"))))))
+        (when ctags-update-prompt-create-tags
+          (setq tags
+                (expand-file-name
+                 "TAGS" (read-directory-name
+                         "Generate TAGS in dir(or disable `ctags-auto-update-mode'):")))
+          ))))
     tags))
 
 ;;;###autoload

@@ -24,6 +24,11 @@
 ;;; Commentary:
 
 ;; And the following to your ~/.emacs startup file.
+
+;; (ctags-global-auto-update-mode)
+;; (setq ctags-update-prompt-create-tags nil);you need manually create TAGS in your project
+
+;; or only turn it on for some special mode
 ;;
 ;;(autoload 'turn-on-ctags-auto-update-mode "ctags-update" "turn on `ctags-auto-update-mode'." t)
 ;;(add-hook 'c-mode-common-hook  'turn-on-ctags-auto-update-mode)
@@ -267,6 +272,11 @@ this return t if current buffer file name is TAGS."
   "turn on `ctags-auto-update-mode'."
   (interactive)
   (ctags-auto-update-mode 1))
+
+;;;###autoload
+(define-global-minor-mode ctags-global-auto-update-mode
+  ctags-auto-update-mode
+  turn-on-ctags-auto-update-mode)
 
 (provide 'ctags-update)
 
